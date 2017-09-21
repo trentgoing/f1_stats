@@ -1,9 +1,9 @@
 /* Get Homepage */
-const index = function (req, res) {
+const home = function (req, res) {
   res.render('index', { title: 'F1 Encyclopedia' });
 };
 
 
 module.exports = {
-  index
+  home
 };

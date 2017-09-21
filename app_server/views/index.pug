@@ -1,5 +1,36 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .row.banner
+    .col-12
+      h1 Drivers
+        small &nbsp;List of all drivers
+
+  .row
+    .col-12.col-md-12
+      .card
+        .card-block
+          h4
+            a(href='/race') Last Race
+          p.current-team Ferarri
+      .card
+        .card-block
+          h4
+            a(href='/season') 2017 Season
+          p.current-team Ferarri
+      .card
+        .card-block
+          h4
+            a(href='/drivers') Drivers
+          p.current-team Ferarri
+      .card
+        .card-block
+          h4
+            a(href='/teams') Teams
+          p.current-team Ferarri
+      .card
+        .card-block
+          h4
+            a(href='/circuits') Circuits
+          p.current-team Ferarri
+        

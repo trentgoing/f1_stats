@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Seasons
+        small &nbsp;List of all Seasons
+
+  .row
+    .col-12.col-md-4
+      p List area.
+      .card
+        .card-block
+          h4
+            a(href='/season') 2017
+            small &nbsp;
+              i.fa.fa-star
+              i.fa.fa-star
+              i.fa.fa-star
+              i.fa.fa-star
+              i.fa.fa-star-o
+            span.badge.badge-pill.badge-default.float-right 100m
+          p.current-team WCC Leader: [Mercedes] [pts]
+          p.current-drivers WDC Leader: [Max Verstappen] [pts]
+    .col-12.col-md-8
+      p.lead Select one or more driver to view their details

@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1 Drivers
+        small &nbsp;List of all drivers
+
+  .row
+    .col-12.col-md-4
+      p List area.
+      .card
+        .card-block
+          h4
+            a(href='/driver') Sebastian Vettel
+            small &nbsp;
+              i.fa.fa-star
+              i.fa.fa-star
+              i.fa.fa-star
+              i.fa.fa-star
+              i.fa.fa-star-o
+            span.badge.badge-pill.badge-default.float-right 100m
+          p.current-team Ferarri
+          .facilities
+            span.badge.badge-warning Hot drinks
+            span.badge.badge-warning Food
+            span.badge.badge-warning Premium wifi
+    .col-12.col-md-8
+      p.lead Select one or more driver to view their details
