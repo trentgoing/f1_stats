@@ -1,22 +1,55 @@
 extends layout
 
+mixin ordinal(n)
+  - var s = ["th","st","nd","rd"]
+  - var v = n%100
+    span.badge.badge-pill.float-right= n+(s[(v-20)%10]||s[v]||s[0])
+
 block content
   .row.banner
     .col-12
       h1 2017
-        a(href='/seasons') Season 
+        a(href='/seasons')= ' Season' 
   .row
     .col-12.col-lg-12
       .row
+        
         .col-12.col-md-3
-          .card.card-primary
+          .card.card-primary.side-bar
             .card-block
-              h2.card-title [Current] Season
-              p.card-text WDC Leader: [Hamilton] [2]
-              p.card-text WCC Leader: [Mercedes] [100]
-          .card.card-primary
-            .card-block
-              h2.card-title News and Highlights
+              h2.card-title= year + ' Season'
+              p.card-text= "WDC Leader: " + driver_standings[0].name + " " + driver_standings[0].points
+              p.card-text= "WCC Leader: " + team_standings[0].name + " " + team_standings[0].points
+          
+          .btn-group.btn-block(data-toggle="buttons")
+            label.btn.btn-primary.btn-block.active
+              input(type="radio" name="options" id="option1" autocomplete="off" checked='')
+              | Drivers
+            label.btn.btn-primary.btn-block
+              input(type="radio" name="options" id="option2" autocomplete="off" checked='')
+              | Teams
+          
+          each driver in driver_standings
+            .card#driver
+              .card-block.drivers.side-bar
+                h4
+                  a(href='/driver')= driver.name
+                  small &nbsp;
+                  +ordinal(driver.place)
+                .row
+                  .col-12.col-md-8
+                    p.current-team= driver.team
+                  .col-12.col-md-4
+                    p.start_pos= 'Pts: ' + driver.points
+          each team in team_standings
+            .card#team
+              .card-block.teams.side-bar
+                h4
+                  a(href='/driver')= team.name
+                  small &nbsp;
+                  +ordinal(team.place)
+                  p.start_pos= 'Pts: ' + team.points
+
         .col-12.col-md-9
           .card.card-primary
             .card-block
@@ -28,7 +61,8 @@ block content
                 .card.race.w-20
                   <img class="card-img-top" src="..." alt="Card image cap">
                   .card-block
-                    h4.race-title Monaco
+                    h4.race-title
+                      a(href='/race') Monaco
                     p.card-text 2017
                 .card.race.w-20
                   <img class="card-img-top" src="..." alt="Card image cap">

@@ -3,33 +3,33 @@ extends layout
 block content
   .row.banner
     .col-12
-      h1 Monaco
+      h1= circuit.name
   .row
     .col-12.col-lg-12
       .row
-        .col-12.col-md-3
-          p.rating
-            i.fa.fa-star
-            i.fa.fa-star
-            i.fa.fa-star
-            i.fa.fa-star
-            i.fa.fa-star-o
-          p.current-team Stats
-          .card.card-primary
-            .card-block
-              h2.card-title Track Record
-              p.card-text Standing: [2]
-              p.card-text Points: [100]
-          .card.card-primary
-            .card-block
-              h2.card-title News and Highlights
-          .card.card-primary
-            .card-block
-              h2.card-title Previous Seasons
+        .col-12.col-md-3.buttons
+          .card.card-primary.career.side-bar
+              .card-block
+                h2.card-title= circuit.location
+                p.card-text= "Seasons: " + circuit.overall.seasons
+                p.card-text= "Lap Record: " + circuit.overall.lap_record 
+                p.card-text Most Victories:
+                each driver, index in circuit.overall.victories
+                  p.card-text= index+1 + ": " + driver.name + " (" + driver.wins + " wins)"
+          each season in circuit.full_history
+            .card#team
+              .card-block.season.side-bar
+                h4
+                  a(href='/season')= season.season
+                  p.start_pos= '1st: ' + season.results[0].name
+                  p.start_pos= '2nd: ' + season.results[1].name
+                  p.start_pos= '3rd: ' + season.results[2].name
+                  p.start_pos= 'Fastest Lap: ' + season.fastest_lap
+
         .col-12.col-md-9
           .card.card-primary
             .card-block
-              h2.card-title Statistics
+              h2.card-title Fastest Laps over time
           .card.card-primary
             .card-block
               h2.card-title History

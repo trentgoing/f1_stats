@@ -62,12 +62,7 @@ h1 small {
   margin-right: 1rem;
 }
 
-.badge-default, .btn-primary {
-  background-color: #ad1d28;
-  border-color: #911821;
-}
-
-h4 a, h4 a:hover {
+h4 a, h4 {
   color: #fff;
 }
 
@@ -92,4 +87,69 @@ legend {
 footer {
   position: fixed;
   bottom: 0px;
+}
+
+.badge-first{
+  background-color: goldenrod;
+  border-color: darkgoldenrod;
+}
+
+.badge-second{
+  background-color: silver;
+  border-color: darkgrey;
+}
+
+.badge-third{
+  background-color: darkgoldenrod;
+  border-color: darkgoldenrod;
+}
+
+a {
+  color: white;
+}
+a.navbar-brand, span.fa.fa-bars {
+  color: #469ea8;
+
+  a:hover{
+    color: blue;
+  }
+}
+
+a:hover {
+  color: navajowhite;
+}
+
+div.side-bar p {
+    font-size: .85rem;
+    margin-bottom: .25rem;
+    margin-left: .25rem;
+}
+
+span.badge.lap {
+  font-size: 90%;
+}
+
+.btn-primary {
+  background-color: #1d6a72;
+  border-color: #1a3e42;
+}
+.btn-primary.active {
+  background-color: #38b7c4;
+  border-color: #1a3e42;
+}
+
+.btn-block+.btn-block {
+  margin-top: 0rem;
+}
+
+.btn-group-vertical>.btn, .btn-group>.btn {
+    margin-bottom: 0.25rem;
+}
+
+.hidden {
+  display: none;
+}
+
+div.card-text {
+  padding-right: 0;
 }

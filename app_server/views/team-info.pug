@@ -1,36 +1,78 @@
 extends layout
 
+mixin ordinal(driver, position)
+  - var s = ["th","st","nd","rd"]
+  - var v = position%100
+    p.start_pos= driver + ': ' + position+(s[(v-20)%10]||s[v]||s[0])
+
+mixin ordinal_team(n)
+  - var s = ["th","st","nd","rd"]
+  - var v = n%100
+    span.badge.badge-pill.float-right= n+(s[(v-20)%10]||s[v]||s[0])
+
 block content
   .row.banner
     .col-12
-      h1 Red Bull Racing
+      h1= team.name
   .row
     .col-12.col-lg-12
       .row
-        .col-12.col-md-3
-          p.rating
-            i.fa.fa-star
-            i.fa.fa-star
-            i.fa.fa-star
-            i.fa.fa-star
-            i.fa.fa-star-o
-          p.current-drivers Daniel Ricciardo
-          p.current-drivers Max Verstappen
-          .card.card-primary
+        .col-12.col-md-3.buttons
+          .btn-group.btn-block(data-toggle="buttons")
+            label.btn.btn-primary.btn-block.active
+              input(type="radio" name="options" id="option1" autocomplete="off" checked='')
+              | Season
+            label.btn.btn-primary.btn-block
+              input(type="radio" name="options" id="option2" autocomplete="off" checked='')
+              | History
+            
+          .card.card-primary.season.side-bar
             .card-block
-              h2.card-title [Current] Season
-              p.card-text Standing: [2]
-              p.card-text Points: [100]
-          .card.card-primary
+              h2.card-title= team.current_season.year + ' Season'
+              .row
+                .col-12.col-md-5.card-text
+                  p.card-text= "Standing: " + team.current_season.standing
+                .col-12.col-md-7.card-text
+                  p.card-text= "Points: " + team.current_season.points
+          each race in team.current_season.races
+            .card#team
+              .card-block.season.side-bar
+                h4
+                  a(href='/driver')= race.race
+                  small &nbsp;
+                  span.badge.badge-pill.float-right= race.points + ' pts'
+                  +ordinal(race.driver_1, race.finish_1)
+                  +ordinal(race.driver_2, race.finish_2)
+
+          .card.card-primary.career.side-bar
             .card-block
-              h2.card-title News and Highlights
-          .card.card-primary
-            .card-block
-              h2.card-title Previous Seasons
+              h2.card-title History
+              .row
+                .col-12.col-md-5.card-text
+                  p.card-text= "Seasons: " + team.overall.seasons
+                  p.card-text= "WCC: " + team.overall.wcc
+                  p.card-text= "Best: " + team.overall.best_wcc
+                .col-12.col-md-7.card-text
+                  p.card-text= "Prix: " + team.overall.grands_prix
+                  p.card-text= "Points: " + team.overall.points
+                  p.card-text= "Best: " + team.overall.best_finish
+
+
+          each season in team.full_history
+            .card#team
+              .card-block.season.side-bar
+                h4
+                  a(href='/season')= season.season
+                  small &nbsp;
+                  +ordinal_team(season.finish)
+                  p.start_pos= 'Points: ' + season.points
+                  each driver in season.drivers
+                    +ordinal(driver.name, driver.finish)
+
         .col-12.col-md-9
           .card.card-primary
             .card-block
-              h2.card-title Statistics
+              h2.card-title Team Points Race
           .card.card-primary
             .card-block
               h2.card-title Race Results
