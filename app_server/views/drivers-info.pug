@@ -5,10 +5,16 @@ mixin ordinal(n)
   - var v = n%100
     span.badge.badge-pill.float-right= n+(s[(v-20)%10]||s[v]||s[0])
 
+mixin ordinal_in_place(n)
+  - var s = ["th","st","nd","rd"]
+  - var v = n%100
+    = ' ' + n+(s[(v-20)%10]||s[v]||s[0])
+
+
 block content
   .row.banner
     .col-12
-      h1= driver.name
+      h1= driver_new.forename + ' ' + driver_new.surname
   .row
     .col-12.col-lg-12
       .row
@@ -23,18 +29,28 @@ block content
             
           .card.card-primary.season.side-bar
             .card-block
-              h2.card-title= driver.current_season.year + ' Season'
-              p.card-text= "Standing: " + driver.current_season.standing
-              p.card-text= "Points: " + driver.current_season.points
-          each race in driver.current_season.races
-            .card#team
-              .card-block.season.side-bar
-                h4
-                  a(href='/driver')= race.race
-                  small &nbsp;
-                  +ordinal(race.finish)
-                  p.start_pos= 'Start: ' + race.start
-                  p.start_pos= 'Fastest Lap: ' + race.fast_lap
+              h2.card-title= driver_new.driverStandings[0].race.year + ' Season'
+              p.card-text 
+                | Standing:
+                +ordinal_in_place(driver_new.driverStandings[0].position)
+              p.card-text= "Points: " + driver_new.driverStandings[0].points
+              p.card-text= "Wins: " + driver_new.driverStandings[0].wins
+          each result in driver_new.results
+            if result.race.year === driver_new.results[0].race.year
+              .card#team
+                .card-block.season.side-bar
+                  h5
+                    a(href=`/races/${result.raceId}`)= result.race.name
+                    small &nbsp;
+                    if result.position === null
+                      span.badge.badge-pill.float-right= result.positionText
+                    else
+                      +ordinal(result.position)
+                  .row
+                    .col-12.col-md-4
+                      p.start_pos= 'Start: ' + result.grid
+                    .col-12.col-md-8
+                      p.start_pos= 'Fastest Lap: ' + result.fastestLapTime
 
           .card.card-primary.career.side-bar
             .card-block

@@ -1,0 +1,17 @@
+<div class="row banner">
+  <div class="col-12">
+    <h1> {{ pageContent.header.year }} {{ pageContent.header.name }}
+    </h1>
+  </div>
+</div>
+<div class="col-12 col-md-3 side-rail">
+  <div class="card card-primary side-bar">
+    <div class="card-block" [ngSwitch]= "pageContent.info.lap_count != ''">
+      <h4> <a>{{pageContent.info.location}}</a></h4>
+      <p *ngSwitchCase="true" class="lap-count">Lap Count: {{pageContent.info.lap_count}}</p>
+    </div>
+  </div>
+  <div class="scroll">
+    <app-driver-results *ngIf="newResults" [results]="newResults" >Loading...</app-driver-results>
+  </div>
+</div>

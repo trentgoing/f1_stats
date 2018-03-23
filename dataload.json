@@ -1,0 +1,48 @@
+races: [{
+  "title": "R1 2017",
+  "race_name": "Spain 2017",
+  "race_year": 2017,
+  "race_date": 2017-05-14,
+  "fastest_lap": {
+    "rank": Number,
+    "lap": Number,
+    "time": Number,
+    "kph_speed": Number
+  },
+  "circuit": {
+    "circuitId": "",
+    "name": "",
+    "url": "",
+    "laps": Number,
+    "lap_record": Number,
+    "coords": []
+  }
+  "results": [
+    {
+      "name": String,
+      "position": Number,
+      "points": Number,
+      "driver": driverSchema,
+      "constr": constrSchema,
+      "start": Number,
+      "qual": Number,
+      "status": String,
+      "laps": Number,
+      "time": Number,
+      "fast_lap": fastLapSchema,
+      "pits": [Number]
+    }
+  ],
+  "laps": [
+    {
+      "lapNumber": 1,
+      "driver_times": [
+        {
+          "driverId": String,
+          "position": Number,
+          "time": Number
+        }
+      ]
+    }
+  ]
+}]

@@ -1,0 +1,32 @@
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse">
+  <div class="container">
+    <a routerLink="" class="navbar-brand" routerLinkActive="active">Stat Sector: Results</a>
+    <button class="navbar-toggler" (click)="toggleMenu()" type="button">
+      <span class="fa fa-bars" aria-hidden="true"></span>
+    </button>
+    <div class="navbar-collapse" *ngIf="formVisible" id="navbarMain">
+      <ul class="nav navbar-nav">
+        <li>
+          <a routerLink="race-info" class="nav-link menu_link">Grands Prix</a>
+          <a class="menu_link" href="/drivers/">Drivers</a>
+          <a class="menu_link" href="/circuits/">Circuits</a>
+          <a class="menu_link" href="/seasons/">Seasons</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="error">{{message}}</div>
+  </div>
+  
+  <router-outlet></router-outlet>
+</div>
+
+<footer>
+  <div class="row">
+    <div class="col-12"><small>&copy; Erogast data 2018</small></div>
+  </div>
+</footer>

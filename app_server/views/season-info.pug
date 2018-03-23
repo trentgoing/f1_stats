@@ -8,8 +8,9 @@ mixin ordinal(n)
 block content
   .row.banner
     .col-12
-      h1 2017
+      h1= season.year
         a(href='/seasons')= ' Season' 
+      
   .row
     .col-12.col-lg-12
       .row
@@ -17,9 +18,8 @@ block content
         .col-12.col-md-3
           .card.card-primary.side-bar
             .card-block
-              h2.card-title= year + ' Season'
-              p.card-text= "WDC Leader: " + driver_standings[0].name + " " + driver_standings[0].points
-              p.card-text= "WCC Leader: " + team_standings[0].name + " " + team_standings[0].points
+              p.card-text= "WDC Leader: " + driver_standings[0].driver.forename + " " + driver_standings[0].driver.surname + " " + driver_standings[0].points
+              p.card-text= "WCC Leader: " + constructor_standings[0].team.name + " " + constructor_standings[0].points
           
           .btn-group.btn-block(data-toggle="buttons")
             label.btn.btn-primary.btn-block.active
@@ -29,26 +29,30 @@ block content
               input(type="radio" name="options" id="option2" autocomplete="off" checked='')
               | Teams
           
-          each driver in driver_standings
+          each standing in driver_standings
             .card#driver
               .card-block.drivers.side-bar
                 h4
-                  a(href='/driver')= driver.name
+                  a(href=`/driver/${standing.driverId}`)= standing.driver.forename + " " + standing.driver.surname
                   small &nbsp;
-                  +ordinal(driver.place)
+                  +ordinal(standing.position)
                 .row
                   .col-12.col-md-8
-                    p.current-team= driver.team
+                    p.current-team= 'Wins: ' + standing.wins
                   .col-12.col-md-4
-                    p.start_pos= 'Pts: ' + driver.points
-          each team in team_standings
+                    p.start_pos= 'Pts: ' + standing.points
+          each standing in constructor_standings
             .card#team
               .card-block.teams.side-bar
                 h4
-                  a(href='/driver')= team.name
+                  a(href=`/teams/${standing.constructorId}`)= standing.team.name
                   small &nbsp;
-                  +ordinal(team.place)
-                  p.start_pos= 'Pts: ' + team.points
+                  +ordinal(standing.position)
+                .row
+                  .col-12.col-md-8
+                    p.current-team= 'Wins: ' + standing.wins
+                  .col-12.col-md-4
+                    p.start_pos= 'Pts: ' + standing.points
 
         .col-12.col-md-9
           .card.card-primary

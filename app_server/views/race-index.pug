@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .row.banner
+    .col-12
+      h1= title
+        small &nbsp;List of all drivers
+  .row
+    .col-12.col-md-8
+      .error= message
+
+  .row
+    .col-12.col-md-4
+      each race in races
+        .card#team
+          .card-block.season.side-bar
+            h4
+              a(href=`/races/${race.raceId}`)= race.name
+              p.start_pos= race.year
+              p.start_pos= race.round
+          
+    .col-12.col-md-8
+      p.lead Select one or more races to view their details

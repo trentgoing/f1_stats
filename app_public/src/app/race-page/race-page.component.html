@@ -1,0 +1,6 @@
+  <div class="card" id="team" *ngFor="let race of races">
+    <div class="card-block season side-bar">
+      <h4><a routerLink="/races/{{race.raceId}}">{{race.name}}</a>
+        <p class="start_pos">{{race.year}}</p><p class="start_pos">{{race.round}}</p></h4>
+    </div>
+  </div>

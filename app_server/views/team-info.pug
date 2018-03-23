@@ -13,7 +13,7 @@ mixin ordinal_team(n)
 block content
   .row.banner
     .col-12
-      h1= team.name
+      h1= team_new.name
   .row
     .col-12.col-lg-12
       .row
@@ -28,21 +28,30 @@ block content
             
           .card.card-primary.season.side-bar
             .card-block
-              h2.card-title= team.current_season.year + ' Season'
+              h2.card-title= team_new.constructorStandings[0].race.year + ' Season'
               .row
                 .col-12.col-md-5.card-text
-                  p.card-text= "Standing: " + team.current_season.standing
+                  p.card-text= "Standing: " + team_new.constructorStandings[0].positionText
                 .col-12.col-md-7.card-text
-                  p.card-text= "Points: " + team.current_season.points
-          each race in team.current_season.races
+                  p.card-text= "Points: " + team_new.constructorStandings[0].points
+          each race in races
             .card#team
               .card-block.season.side-bar
                 h4
-                  a(href='/driver')= race.race
+                  a(href=`/races/${race.raceId}`)= race.raceInfo.name
                   small &nbsp;
-                  span.badge.badge-pill.float-right= race.points + ' pts'
-                  +ordinal(race.driver_1, race.finish_1)
-                  +ordinal(race.driver_2, race.finish_2)
+                  span.badge.badge-pill.float-right= race.driver_1.points + race.driver_2.points
+                  .row
+                    .col-12.col-md-6
+                      if race.driver_1.position === null
+                        p.start_pos= race.driver_1.driverInfo.surname + ': ' + race.driver_1.positionText
+                      else
+                        +ordinal(race.driver_1.driverInfo.surname, race.driver_1.position)
+                    .col-12.col-md-6
+                      if race.driver_2.position === null
+                        p.start_pos= race.driver_2.driverInfo.surname + ': ' + race.driver_2.positionText
+                      else
+                        +ordinal(race.driver_2.driverInfo.surname, race.driver_2.position)
 
           .card.card-primary.career.side-bar
             .card-block

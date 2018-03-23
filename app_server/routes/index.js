@@ -13,21 +13,22 @@ router.get('/', controlHome.home);
 
 /* Seasons pages. */
 router.get('/seasons', controlSeasons.index);
-router.get('/season', controlSeasons.seasonInfo);
+router.get('/seasons/:year', controlSeasons.seasonInfo);
 
 /* Circuit pages */
 router.get('/circuits', controlCircuits.index);
-router.get('/circuit', controlCircuits.circuitInfo);
+router.get('/circuits/:circuitid', controlCircuits.circuitInfo);
 
 /* Driver pages */
 router.get('/drivers', controlDrivers.index);
-router.get('/driver', controlDrivers.driverInfo);
+router.get('/drivers/:driverid', controlDrivers.driverInfo);
 
 /* Driver pages */
 router.get('/teams', controlTeams.index);
-router.get('/team', controlTeams.teamInfo);
+router.get('/teams/:teamid', controlTeams.teamInfo);
 
 /* Races pages */
-router.get('/race', controlRaces.raceInfo);
+router.get('/races', controlRaces.index);
+router.get('/races/:raceid', controlRaces.raceInfo);
 
 module.exports = router;

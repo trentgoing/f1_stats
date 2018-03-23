@@ -5,26 +5,33 @@ block content
     .col-12
       h1 Teams
         small &nbsp;List of all teams
+  .row
+    .col-12.col-md-8
+      .error= message
 
   .row
     .col-12.col-md-4
-      p List area.
-      .card
-        .card-block
-          h4
-            a(href='/team') Red Bull Racing
-            small &nbsp;
-              i.fa.fa-star
-              i.fa.fa-star
-              i.fa.fa-star
-              i.fa.fa-star
-              i.fa.fa-star-o
-            span.badge.badge-pill.badge-default.float-right 100m
-          p.current-drivers Daniel Ricciardo [pts]
-          p.current-drivers Max Verstappen [pts]
-          .facilities
-            span.badge.badge-warning Hot drinks
-            span.badge.badge-warning Food
-            span.badge.badge-warning Premium wifi
+      each team in teams
+        .card#team
+          .card-block.season.side-bar
+            h4
+              a(href=`/teams/${team.constructorId}`)= team.name
+              small &nbsp;
+              span.badge.badge-pill.badge-default.float-right= "YEAR - YEAR"
+              .row
+                .col-12.col-md-6
+                  p.start_pos= 'Most Recent Finish: PLACE'
+                .col-12.col-md-6
+                  p.start_pos= 'Nationality: ' + team.nationality
+              .row
+                .col-12
+                  p.start_pos= 'Last Drivers:'
+              .row
+                .col-12.col-md-1
+                .col-12.col-md-5
+                  p.start_pos= 'Driver 1 [PTS]'
+                .col-12.col-md-5
+                  p.start_pos= 'Driver 2 [PTS]'
+
     .col-12.col-md-8
       p.lead Select one or more driver to view their details

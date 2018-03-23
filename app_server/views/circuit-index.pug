@@ -3,27 +3,22 @@ extends layout
 block content
   .row.banner
     .col-12
-      h1 Circuits
+      h1= title
         small &nbsp;List of all circuits
+  .row
+    .col-12.col-md-8
+      .error= message
 
   .row
-    .col-12.col-md-4
-      p List area.
-      .card
-        .card-block
-          h4
-            a(href='/circuit') Monaco
-            small &nbsp;
-              i.fa.fa-star
-              i.fa.fa-star
-              i.fa.fa-star
-              i.fa.fa-star
-              i.fa.fa-star-o
-            span.badge.badge-pill.badge-default.float-right 100m
-          p.current-team Ferarri
-          .facilities
-            span.badge.badge-warning Hot drinks
-            span.badge.badge-warning Food
-            span.badge.badge-warning Premium wifi
-    .col-12.col-md-8
+    .col-12.col-md-5
+      each circuit in circuits
+            .card#team
+              .card-block.season.side-bar
+                h4
+                  a(href=`/circuits/${circuit.circuitId}`)= circuit.name
+                  p.start_pos= 'Location: ' + circuit.location
+                  p.start_pos= 'Country: ' + circuit.country
+                  p.start_pos= 'Map: ' + circuit.lat + ", " + circuit.lng
+                  
+    .col-12.col-md-7
       p.lead Select one or more circuit to view their details

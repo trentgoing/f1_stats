@@ -1,0 +1,30 @@
+Database start - mongod --dbpath <path to data directory>
+  I created a new database folder for it to use on my machine.  
+  from the f1 folder it is:
+    mongod --dbpath ../data/db
+    then used this link https://alicoding.com/how-to-start-mongodb-automatically-when-starting-your-mac-os-x/ to initialize
+    i believe this has the dbpath as something different - /var/lib/mongodb/
+Express node start - nodemon
+
+11/27 - due to data availabiliy and structure, going to use mysql with sequelize bith from npm instead of mongo
+the password i entered for this server's root was 123qweasd
+my password will be 'crunchamuncha'
+
+017-11-27T22:51:15.383140Z 1 [Note] A temporary password is generated for root@localhost: 0U=:MFP:gAcC
+
+If you lose this password, please consult the section How to Reset the Root Password in the MySQL reference manual.
+
+
+12/23 - After defining the model etc. Constructor is giving hell for eager loading.  Might be due to naming convention?  Either way going to rename the table to 'teams', 
+
+
+
+Home 
+  - Update to pull the latest Results, display and link to other details
+
+Races 
+  - Update the 
+
+
+
+

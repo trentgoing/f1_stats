@@ -3,21 +3,24 @@ extends layout
 block content
   .row.banner
     .col-12
-      h1 Drivers
+      h1= title
         small &nbsp;List of all drivers
+  .row
+    .col-12.col-md-8
+      .error= message
 
   .row
     .col-12.col-md-4
-      p List area.
-      .card
-        .card-block.drivers
-          h4
-            a(href='/driver') Sebastian Vettel
-            small &nbsp;
-            span.badge.badge-pill.badge-default.float-right 1st
-          p.current-team Ferarri
-          p.fastest_lap Career WDC: []
-          p.pit_stops Pit stops: []
+      each driver in drivers
+        .card#team
+          .card-block.season.side-bar
+            h4
+              a(href=`/drivers/${driver.driverId}`)= driver.name
+              p.start_pos= 'Number: ' + driver.number
+              p.start_pos= 'Nationality: ' + driver.nationality
+              p.start_pos= 'Last Season: PLACE'
+              p.start_pos= 'Last Team: HOLDER'
+              p.start_pos= 'Career Pts: HOLDER'
           
     .col-12.col-md-8
       p.lead Select one or more driver to view their details
