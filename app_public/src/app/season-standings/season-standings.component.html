@@ -1,0 +1,44 @@
+<div class="btn-group">
+  <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Drivers">Drivers</label>
+  <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Teams">Constructors</label>
+</div>
+
+<div class="scroll" *ngIf="radioModel==='Drivers'">
+  <div class="card" id="driver" *ngFor="let result of WDCStandings">
+    <div class="card-block drivers side-bar">
+      <h4>
+        <a href="/driver/3">{{result.driver.forename}} {{result.driver.surname}}</a>
+        <small>&nbsp;</small>
+        <span class="badge badge-pill float-right" [class]="getStyleOrdinal(result.position)">{{result.position | ordinal}}</span>
+      </h4>
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <p class="current-team">Wins: {{result.wins}}</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="start_pos">Pts: {{result.points}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="scroll" *ngIf="radioModel==='Teams'">
+  <div class="card" id="team" *ngFor="let result of WCCStandings">
+    <div class="card-block teams side-bar">
+      <h4>
+        <a href="/teams/131">{{result.team.name}}</a>
+        <small>&nbsp;</small>
+        <span class="badge badge-pill float-right" [class]="getStyleOrdinal(result.position)">{{result.position | ordinal}}</span>
+      </h4>
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <p class="current-team">Wins: {{result.wins}}</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <p class="start_pos">Pts: {{result.points}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

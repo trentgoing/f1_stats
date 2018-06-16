@@ -1,0 +1,14 @@
+
+
+<svg:g [attr.transform]="'translate(' + area[0] + ',' + area[1] + ')'" class="area">
+  <svg:circle
+      cx="0"
+      cy="0"
+      [attr.r]="50">
+  </svg:circle>
+  <svg:text class="area-name">
+    {{area}}
+  </svg:text>
+  <svg:path [attr.d]="area"></svg:path>
+</svg:g>
+

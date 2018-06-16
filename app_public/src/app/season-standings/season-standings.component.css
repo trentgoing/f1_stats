@@ -1,0 +1,15 @@
+.scroll {
+  height: 65vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.btn-group {
+  width: 100%;
+}
+
+.btn {
+  margin-bottom: 0px;
+  display: block;
+  width: 100%;
+}

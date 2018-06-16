@@ -1,17 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Result } from '../result';
-import { Race } from '../race';
+import { Race, DriverStanding, ConstructorStanding } from '../race';
 
 @Component({
-  selector: 'app-driver-results',
-  templateUrl: './driver-results.component.html',
-  styleUrls: ['./driver-results.component.css']
+  selector: 'app-season-standings',
+  templateUrl: './season-standings.component.html',
+  styleUrls: ['./season-standings.component.css']
 })
 
-export class DriverResultsComponent implements OnInit {
+export class SeasonStandingsComponent implements OnInit {
 
-  @Input() results: Result[];
+  @Input() WCCStandings: ConstructorStanding[];
+  @Input() WDCStandings: DriverStanding[]; 
+
+  radioModel = 'Drivers';
 
   constructor() { }
 

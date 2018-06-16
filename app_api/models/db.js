@@ -57,6 +57,13 @@ models.forEach(function(model) {
   m.Races.belongsTo(m.Circuits, { foreignKey: 'circuitid' });
   m.Circuits.hasMany(m.Races, { foreignKey: 'circuitid'});
 
+  // For LapTimes
+  m.LapTimes.belongsTo(m.Races, { foreignKey: 'raceid' });
+  m.Races.hasMany(m.LapTimes, { foreignKey: 'raceid' });
+
+  m.LapTimes.belongsTo(m.Drivers, { foreignKey: 'driverid' });
+  m.Drivers.hasMany(m.LapTimes, { foreignKey: 'driverid' });
+
 })(module.exports);
 
 module.exports.sequelize = sequelize;

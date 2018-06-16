@@ -100,6 +100,40 @@ const raceResults = function (req, res) {
   }
 };
 
+const readLapTimes = function (req, res) {
+  if (req.params && req.params.raceid) {
+    LapTimes.findAll({
+      where: {
+        [Op.and]: {raceid: req.params.raceid},
+      },
+      order: [ [ 'driverid', 'ASC' ]]
+    }).then(results => {
+      if(!results) {
+        res
+          .status(404)
+          .json({"message": "Race not found"});
+        return;
+      }
+      // THIS IS WHERE I CAN MANIPULATE I HOPE!!?
+      // need the data in format of array of objects, where each object is a lap with drivers
+      //var data = [
+      //  {lap: lap_number, surname_example: milliseconds, surname_example: milliseconds...},
+      //  {lap: 1, Hamilton: 106128, Rosberg: 106128, Ricciardo: 106128},
+      //  {lap: 2, Hamilton: 100287, Rosberg: 100287, Ricciardo: 100287},
+      //  {lap: 3, Hamilton: 102038, Rosberg: 102038, Ricciardo: 102038}
+      //];
+      let race = results;
+      res
+        .status(200)
+        .json(race);
+    });
+  } else {
+    res
+      .status(404)
+      .json({"message": "No raceid in request"});
+  }
+};
+
 const updateRaceInfo = function (req, res) {
   res
     .status(200)
@@ -118,5 +152,6 @@ module.exports = {
   racesCreate,
   updateRaceInfo,
   deleteRaceInfo,
-  raceResults
+  raceResults,
+  readLapTimes
 };

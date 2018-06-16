@@ -65,15 +65,6 @@ export class HomeListComponent implements OnInit {
   race: Race;
   results: Result[];
 
-  private getResults(): void {
-    this.f1DataService
-      .getResults(970)
-        .then(foundResults => {
-          console.log(foundResults)
-          this.results = foundResults;
-        });
-  }
-
   drivers: Driver[];
 
   team: Team[];

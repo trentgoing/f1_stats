@@ -1,17 +1,46 @@
-<div class="row banner">
-  <div class="col-12">
-    <h1> {{ pageContent.header.year }} {{ pageContent.header.name }}
-    </h1>
-  </div>
-</div>
-<div class="col-12 col-md-3 side-rail">
-  <div class="card card-primary side-bar">
-    <div class="card-block" [ngSwitch]= "pageContent.info.lap_count != ''">
-      <h4> <a>{{pageContent.info.location}}</a></h4>
-      <p *ngSwitchCase="true" class="lap-count">Lap Count: {{pageContent.info.lap_count}}</p>
+<app-banner-selector [content]="pageContent.header" [race]="race" [seasonRaces]="seasonRaces">Loading...</app-banner-selector>
+<div class="row">
+  <div class="col-md-3 side-rail">
+    <div class="card card-primary side-bar">
+      <div class="card-block" [ngSwitch]= "pageContent.info.lap_count != ''">
+        <h4> <a>{{pageContent.info.location}}</a></h4>
+        <p *ngSwitchCase="true" class="lap-count">Lap Count: {{pageContent.info.lap_count}}</p>
+      </div>
+    </div>
+    <div class="scroll">
+      <app-driver-results *ngIf="newResults" [results]="newResults" >Loading...</app-driver-results>
     </div>
   </div>
-  <div class="scroll">
-    <app-driver-results *ngIf="newResults" [results]="newResults" >Loading...</app-driver-results>
+  
+  <div class="col-md-9">
+    <div class="card card-primary">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Position Changes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Lap Times</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pit Stops</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Tire Usage</a>
+        </li>
+      </ul>
+      <!--div class="card-block" id="positions">
+        <h2 class="card-title">Position Changes</h2>
+        <app-graph [nodes]="nodes" [links]="links"></app-graph>
+      </div-->
+      <div class="card-block" id="laptimes">
+        <h2 class="card-title">Lap Times</h2>
+        <app-streamgraph></app-streamgraph>
+      </div>
+      <!--div class="card-block" id="texttest">
+        <h2 class="card-title">Test Text</h2>
+        <app-text-spread></app-text-spread>
+      </div-->
+    </div>
   </div>
+
 </div>

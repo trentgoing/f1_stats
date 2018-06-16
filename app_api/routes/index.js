@@ -20,6 +20,10 @@ router
   .post(controlSeasons.seasonsCreate);
 
 router
+  .route('/seasonraces/:year')
+  .get(controlSeasons.readSeasonRaceList);
+
+router
   .route('/seasons/:year')
   .get(controlSeasons.readSeasonInfo)
   .put(controlSeasons.updateSeasonInfo)
@@ -88,5 +92,9 @@ router
 router
   .route('/raceresults/:raceid')
   .get(controlRaces.raceResults);
+
+router
+  .route('/laptimes/:raceid')
+  .get(controlRaces.readLapTimes);
 
 module.exports = router;

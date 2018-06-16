@@ -1,0 +1,39 @@
+.row.banner{
+  margin-top: 3.25em;
+  padding-bottom: 0em;
+  margin-bottom: 1.25em;
+}
+
+.header {
+  display: -webkit-inline-box;
+}
+
+button {
+  color: #ffffff;
+  outline-style: none;
+  padding: 0px;
+  background-color: #108a93;
+  border-style: none;
+}
+
+button.nabar-toggler {
+  margin-bottom: .5rem; 
+}
+
+.dropdown-menu {
+  min-width: 0px;
+  top: 0%;
+}
+
+.dropdown-item {
+  padding: .25rem 0.5rem;
+}
+
+.race {
+  min-width: 120px;
+}
+
+.scroll-area {
+  width: 90%;
+  overflow: scroll;
+}

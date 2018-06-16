@@ -1,64 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { F1DataService } from '../f1-data.service';
 import { ActivatedRoute } from '@angular/router';
-import { ParamMap } from '@angular/router';
+import { ParamMap } from '@angular/router'; 
 import 'rxjs/add/operator/switchMap';
 
+import { Result } from '../result';
+import { Race } from '../race';
 
-export class Driver {
-  _id: number;
-  number: number;
-  surname: string;
-  forename: string;
-  driverRef: string;
-  code: string;
-  dob: string;
-  nationality: string;
-  url: string;
-}
-
-export class Result {
-  _id: number;
-  raceId: number;
-  driverId: number;
-  constructorId: number;
-  number: number;
-  position: number;
-  grid: number;
-  positionText: string;
-  positionOrder: number;
-  points: number;
-  laps: number;
-  time: string;
-  milliseconds: number;
-  fastestLap: number;
-  rank: number;
-  fastestLapTime: string;
-  fastestLapSpeed: string;
-  statusId: number;
-  team: Team;
-  driver: Driver;
-}
-
-export class Team {
-  _id: number;
-  name: string;
-}
-
-export class Race {
-  _id: number;
-  year: number;
-  round: number;
-  circuitId: number;
-  name: string;
-  date: string;
-  time: string;
-  url: string;
-  circuit: {
-    name: string;
-  };
-  results: [Result]
-}
+import RACE_CONFIG from './race-info.config'
+import { Node, Link } from '../d3';
 
 @Component({
   selector: 'app-race-info',
@@ -68,6 +18,8 @@ export class Race {
 })
 export class RaceInfoComponent implements OnInit {
 
+
+
   constructor(
     private f1DataService: F1DataService,
     private route: ActivatedRoute
@@ -76,15 +28,10 @@ export class RaceInfoComponent implements OnInit {
   race: Race;
   results: Result[];
   newResults: Result[];
+  seasonRaces: Race[];
 
-  private getRace(race: any): void {
-    const race_id: string = '970';
-    this.f1DataService
-      .getResults(race_id)
-        .then(foundResults => {
-          this.results = foundResults;
-        });
-  }
+  nodes: Node[] = [];
+  links: Link[] = [];
 
   ngOnInit(): void {
     this.route.paramMap
@@ -93,7 +40,8 @@ export class RaceInfoComponent implements OnInit {
         return this.f1DataService.getRace(id);
       })
       .subscribe((newRace: Race) => {
-        this.newResults = newRace.results 
+        this.newResults = newRace.results;
+        this.race = newRace;
         this.pageContent.header.name = newRace.name;
         this.pageContent.header.year = String(newRace.year);
         this.pageContent.info.location = newRace.circuit.name;
@@ -104,16 +52,40 @@ export class RaceInfoComponent implements OnInit {
             console.log('No laps run');
           }
         }
+        this.f1DataService
+          .getSeasonRaces(String(newRace.year))
+            .then(foundRaces => {
+              this.seasonRaces = foundRaces;
+            });
       });
+
+    const N = RACE_CONFIG.N; //,
+    const getIndex = number => number - 1;
+     
+    for (let i = 1; i <= N; i++) {
+      this.nodes.push(new Node(i));
+    }
+
+    for (let i = 1; i <= N; i++) {
+      for (let m = 2; i * m <= N; m++) {
+        /** increasing connections toll on connecting nodes */
+        this.nodes[getIndex(i)].linkCount++;
+        this.nodes[getIndex(i * m)].linkCount++;
+
+        /** connecting the nodes before starting the simulation */
+        this.links.push(new Link(i, i * m));
+      }
+    }
+
   }
 
   pageContent = {
     header : {
-      name: 'Race Name',
-      year: '2017'
+      name: '',
+      year: ''
     },
     info : {
-      location: 'Circuit',
+      location: '',
       lap_count: ''
     },
   }

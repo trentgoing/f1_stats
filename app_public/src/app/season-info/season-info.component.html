@@ -1,0 +1,9 @@
+<app-banner-selector [content]="pageContent.header" [season]="season" [seasonRaces]="seasonRaces">Loading...</app-banner-selector>
+<div class="col-12 col-md-3 side-rail">
+  <div class="card card-primary side-bar">
+    <div class="card-block" [ngSwitch]= "pageContent.info.wdc != ''">
+      <h4> <a>{{pageContent.info.rounds}} Race(s) finished</a></h4>
+    </div>
+  </div>
+  <app-season-standings *ngIf="WCCStandings" [WCCStandings]="WCCStandings" [WDCStandings]="WDCStandings" >Loading...</app-season-standings>
+</div>

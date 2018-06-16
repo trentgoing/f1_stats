@@ -1,0 +1,32 @@
+<div class="row banner">
+  <div class="col-12 header">
+    <button dropdown (onShown)="onShown()" (onHidden)="onHidden()" (isOpenChange)="isOpenChange()">
+      <h1 href dropdownToggle (click)="false">{{ content.year + ' '}}</h1>
+      <ul *dropdownMenu class="dropdown-menu">
+        <li *ngFor="let choice of items">
+          <h1><a class="dropdown-item" routerLink="/seasons/{{choice}}">{{choice}}</a></h1>
+        </li>
+      </ul>
+    </button>
+    <button class="navbar-toggler" (click)="togglePrixSelector()" type="button">
+      <h1 *ngIf="prixTitleVisible"> {{ content.name }} </h1>
+    </button>
+    <div class="scroll-area" *ngIf="prixSelectorVisible">
+      <div class="prix-selector container-fluid">
+        <div class="row flex-row flex-nowrap">
+          <div class="card race">
+            <div class="card-block">
+              <h5 class="race-title"><a (click)="togglePrixSelector()" routerLink="/seasons/{{content.year}}">Season</a></h5>
+            </div>
+          </div>
+          <div class="card race" *ngFor="let race of seasonRaces">
+            <!--img class="card-img-top" src="..." alt="Card image cap" -->
+            <div class="card-block">
+              <h5 class="race-title"><a (click)="togglePrixSelector()" routerLink="/races/{{race.raceId}}">{{race.name}}</a></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

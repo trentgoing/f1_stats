@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes){
       type: DataTypes.INTEGER,
       primaryKey: true
     },
-    postition: { type: DataTypes.INTEGER },
+    position: { type: DataTypes.INTEGER },
     time: { type: DataTypes.STRING },
     milliseconds: { type: DataTypes.INTEGER }
   },
