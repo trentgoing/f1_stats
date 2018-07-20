@@ -8,7 +8,7 @@ Express node start - nodemon
 
 11/27 - due to data availabiliy and structure, going to use mysql with sequelize bith from npm instead of mongo
 the password i entered for this server's root was 123qweasd
-my password will be 'crunchamuncha'
+f1app profile's password will be 'hamgroper'
 
 017-11-27T22:51:15.383140Z 1 [Note] A temporary password is generated for root@localhost: 0U=:MFP:gAcC
 
@@ -24,6 +24,12 @@ Home
 
 Races 
   - Update the 
+
+
+downloaded express, downloaded mySQL
+created a f1app user for mySQL and the f1db
+using a bachfile 'f1db.sql' and the command mysql> source 'f1db.sql' i loaded in the ergast data to the created db.
+then permissioned f1app user to access the db with root priviledges. 
 
 
 

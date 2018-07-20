@@ -3,3 +3,24 @@ button {
   left: 10px;
   top: 10px;
 }
+
+/*TIP*/
+.tip {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 180px;
+}
+.tip .lap {
+  font-weight: 900;
+  font-size: 1.25em;
+  margin-bottom: 2px;
+}
+.tip .swatch {
+  width: 11px;
+  height: 11px;
+  float: left;
+  margin-top: 6px;
+  margin-right: 4px;
+}

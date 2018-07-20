@@ -106,7 +106,10 @@ const readLapTimes = function (req, res) {
       where: {
         [Op.and]: {raceid: req.params.raceid},
       },
-      order: [ [ 'driverid', 'ASC' ]]
+      order: [ [ 'driverid', 'ASC' ]],
+      include: [{
+        model: Driver
+      }]
     }).then(results => {
       if(!results) {
         res
@@ -114,15 +117,40 @@ const readLapTimes = function (req, res) {
           .json({"message": "Race not found"});
         return;
       }
-      // THIS IS WHERE I CAN MANIPULATE I HOPE!!?
-      // need the data in format of array of objects, where each object is a lap with drivers
-      //var data = [
-      //  {lap: lap_number, surname_example: milliseconds, surname_example: milliseconds...},
-      //  {lap: 1, Hamilton: 106128, Rosberg: 106128, Ricciardo: 106128},
-      //  {lap: 2, Hamilton: 100287, Rosberg: 100287, Ricciardo: 100287},
-      //  {lap: 3, Hamilton: 102038, Rosberg: 102038, Ricciardo: 102038}
-      //];
-      let race = results;
+      let race = [];
+      let laptimes = {};
+      let cumLaptimes = {};
+      let gapToLeader = {};
+      results.forEach((doc) => {
+        if (!laptimes[doc.lap]) {
+          laptimes[doc.lap] = {lap: doc.lap};
+          cumLaptimes[doc.lap] = {lap: doc.lap};
+        }
+        laptimes[doc.lap][doc.driver.surname] = doc.milliseconds;
+        if (cumLaptimes[doc.lap - 1]) {
+          cumLaptimes[doc.lap][doc.driver.surname] = doc.milliseconds + cumLaptimes[doc.lap - 1][doc.driver.surname];
+        } else {
+          cumLaptimes[doc.lap][doc.driver.surname] = doc.milliseconds;
+        }
+      });
+
+      let laps = Object.keys(cumLaptimes);
+      let drivers = Object.keys(cumLaptimes[1]);
+      for (let i = 0; i < laps.length; i++) {
+        let thisLap = cumLaptimes[laps[i]];
+        let lapGaps = {};
+        lapGaps.lap = thisLap.lap;
+        for (let j = 1; j < drivers.length; j++) {
+          if (thisLap[drivers[j]]) {
+            lapGaps[drivers[j]] = thisLap[drivers[j]];// ADD THIS BACK FOR GAPS COMPUTED ON BACKEND - thisLap[drivers[FASTEST]];
+          } else {
+            lapGaps[drivers[j]] = 0;
+          }
+        }
+        race[i] = lapGaps;
+        //race[i] = cumLaptimes[laps[i]];
+      }
+
       res
         .status(200)
         .json(race);

@@ -4,7 +4,7 @@
       <a href="/drivers/1">{{result.driver.forename}} {{result.driver.surname}}</a>
       <span class="badge badge-pill float-right" [class]="getStyleOrdinal(result.position)">{{result.position | ordinal}}</span>
     </h4>
-    <p class="current-team">{{result.team.name}}</p>
+    <p class="current-team">{{result.constructor.name}}</p>
     <div class="row">
       <div class="col-12 col-md-5">
         <p class="start_pos">Started: {{result.grid}}</p>

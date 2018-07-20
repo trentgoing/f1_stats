@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 module.exports = function(sequelize, DataTypes){
 
-  return Team = sequelize.define("teams", {
+  return Team = sequelize.define("constructor", {
     constructorId: {
       type: DataTypes.INTEGER,
       unique: true,

@@ -27,7 +27,7 @@
   <div class="card" id="team" *ngFor="let result of WCCStandings">
     <div class="card-block teams side-bar">
       <h4>
-        <a href="/teams/131">{{result.team.name}}</a>
+        <a href="/teams/131">{{result.constructor.name}}</a>
         <small>&nbsp;</small>
         <span class="badge badge-pill float-right" [class]="getStyleOrdinal(result.position)">{{result.position | ordinal}}</span>
       </h4>
