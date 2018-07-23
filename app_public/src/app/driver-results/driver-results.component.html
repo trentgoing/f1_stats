@@ -1,7 +1,8 @@
-<div class="card" *ngFor="let result of results">
+<div class="card driver" *ngFor="let result of results">
   <div class="card-block drivers side-bar">
     <h4>
-      <a href="/drivers/1">{{result.driver.forename}} {{result.driver.surname}}</a>
+      <a (click)="toggleSelectedDrivers(result.driver.surname)">{{result.driver.forename}}  {{result.driver.surname}}</a>
+      <!--a href="/drivers/1">{{result.driver.forename}} {{result.driver.surname}}</a-->
       <span class="badge badge-pill float-right" [class]="getStyleOrdinal(result.position)">{{result.position | ordinal}}</span>
     </h4>
     <p class="current-team">{{result.constructor.name}}</p>

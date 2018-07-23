@@ -32,5 +32,13 @@ using a bachfile 'f1db.sql' and the command mysql> source 'f1db.sql' i loaded in
 then permissioned f1app user to access the db with root priviledges. 
 
 
+7/20 - updated the streamgraph.  It now looks good and has UI elements.  
+
+HITLIST
+   1.) Add Remove - Be able to highlight drivers on the left panel, and then update the Streamgraph such that it only includes those.  The path should be already open, as the drivers variable can dictate the Keys, and which drivers show up.  However, we should get the left panel to dictate selection first. Then, we can add the reload/update which should be related to below 
+   2.) Initialize - need the streampgraph to reload on smart navigation between races
+   3. Color Changes for the teams
+
+
 
 

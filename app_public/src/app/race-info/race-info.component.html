@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="scroll">
-      <app-driver-results *ngIf="newResults" [results]="newResults" >Loading...</app-driver-results>
+      <app-driver-results *ngIf="newResults" [results]="newResults"  (update)="driversSelected($event)" >Loading...</app-driver-results>
     </div>
   </div>
   
@@ -28,13 +28,13 @@
           <a class="nav-link" href="#">Tire Usage</a>
         </li>
       </ul>
-      <!--div class="card-block" id="positions">
+      <div class="card-block" id="positions">
         <h2 class="card-title">Position Changes</h2>
         <app-graph [nodes]="nodes" [links]="links"></app-graph>
-      </div-->
+      </div>
       <div class="card-block" id="laptimes">
         <h2 class="card-title">Lap Times</h2>
-        <app-streamgraph></app-streamgraph>
+        <app-streamgraph  [selected]="selectedDrivers"></app-streamgraph>
       </div>
       <!--div class="card-block" id="texttest">
         <h2 class="card-title">Test Text</h2>

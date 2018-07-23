@@ -29,6 +29,7 @@ export class RaceInfoComponent implements OnInit {
   results: Result[];
   newResults: Result[];
   seasonRaces: Race[];
+  selectedDrivers: string[] = [];
 
   nodes: Node[] = [];
   links: Link[] = [];
@@ -42,6 +43,7 @@ export class RaceInfoComponent implements OnInit {
       .subscribe((newRace: Race) => {
         this.newResults = newRace.results;
         this.race = newRace;
+        this.selectedDrivers = [];
         this.pageContent.header.name = newRace.name;
         this.pageContent.header.year = String(newRace.year);
         this.pageContent.info.location = newRace.circuit.name;
@@ -77,6 +79,11 @@ export class RaceInfoComponent implements OnInit {
       }
     }
 
+  }
+
+  driversSelected(event) {
+    this.selectedDrivers = event;
+    this.selectedDrivers = this.selectedDrivers.slice();
   }
 
   pageContent = {

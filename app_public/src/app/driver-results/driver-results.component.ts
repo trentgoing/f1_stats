@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 import { Result } from '../result';
 import { Race } from '../race';
@@ -12,6 +12,8 @@ import { Race } from '../race';
 export class DriverResultsComponent implements OnInit {
 
   @Input() results: Result[];
+  public selected: string[] = [];
+  @Output('update') changeInSelected: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   constructor() { }
 
@@ -28,6 +30,17 @@ export class DriverResultsComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  toggleSelectedDrivers(driverName: string) {
+    let index = this.selected.indexOf(driverName);
+    if (index === -1) {
+      this.selected.push(driverName);
+    } else {
+      this.selected.splice(index, 1)
+    }
+    this.changeInSelected.emit(this.selected);
   }
 
 }

@@ -5,17 +5,11 @@ import { D3Service } from '../../d3/d3.service';
 @Component({
   selector: 'app-graph',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
-      <g [attr.zoomableOf]="svg">
-        <g [linkVisual]="link" *ngFor="let link of links"></g>
-        <g [nodeVisual]="node" *ngFor="let node of nodes" [draggableNode]="node" [draggableInGraph]="graph"></g>
-      </g>
-    </svg>
-  `,
+  templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit {
+
   @Input() nodes: Node[];
   @Input() links: Link[];
   graph: ForceDirectedGraph;
@@ -26,7 +20,10 @@ export class GraphComponent implements OnInit {
     this.graph.initSimulation(this.options);
   }
 
-  constructor(private d3Service: D3Service, private ref: ChangeDetectorRef) { }
+  constructor(
+    private d3Service: D3Service,
+    private ref: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     /** Receiving an initialized simulated graph from our custom d3 service */
