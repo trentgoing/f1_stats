@@ -35,14 +35,14 @@ h1 small {
   background-color: #469ea8;
 }
 
-.card.driver {
+.card-block.drivers {
   height: 30px;
   overflow: hidden;
 }
 
-.card.driver.selected {
-  background-color: #0094A9;
-  height: 90px;
+.card-block.drivers.active {
+  background-color: #83b5c0;
+  height: 78px;
 }
 
 .card-primary {

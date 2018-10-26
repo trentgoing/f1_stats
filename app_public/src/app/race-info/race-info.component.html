@@ -16,30 +16,42 @@
     <div class="card card-primary">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Position Changes</a>
+          <a class="nav-link active" href="#" id="position-changes" (click)="tabSelected($event)">Gap Chart</a>
+        </li>  
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="lap-times" (click)="tabSelected($event)">Lap Times</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Lap Times</a>
+          <a class="nav-link" href="#" id="pit-stops" (click)="tabSelected($event)">Pit Stops</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pit Stops</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Tire Usage</a>
+          <a class="nav-link" href="#" id="tire-usage" (click)="tabSelected($event)">Tire Usage</a>
         </li>
       </ul>
-      <div class="card-block" id="positions">
-        <h2 class="card-title">Position Changes</h2>
-        <app-graph [nodes]="nodes" [links]="links"></app-graph>
+      <div *ngIf="selectedTab==='position-changes'">
+        <div class="card-block" id="laptimes">
+          <h2 class="card-title">Gap Chart</h2>
+          <app-streamgraph  [selected]="selectedDrivers"></app-streamgraph>
+        </div>
       </div>
-      <div class="card-block" id="laptimes">
-        <h2 class="card-title">Lap Times</h2>
-        <app-streamgraph  [selected]="selectedDrivers"></app-streamgraph>
+      <div *ngIf="selectedTab==='lap-times'">
+        <div class="card-block" id="positions">
+          <h2 class="card-title">Position Changes</h2>
+          <app-graph [nodes]="nodes" [links]="links"></app-graph>
+        </div>
       </div>
-      <!--div class="card-block" id="texttest">
-        <h2 class="card-title">Test Text</h2>
-        <app-text-spread></app-text-spread>
-      </div-->
+      <div *ngIf="selectedTab==='pit-stops'">
+        <div class="card-block" id="texttest">
+          <h2 class="card-title">Pit Stops</h2>
+          <app-text-spread></app-text-spread>
+        </div>
+      </div>
+      <div *ngIf="selectedTab==='tire-usage'">
+        <div class="card-block" id="texttest">
+          <h2 class="card-title">Tire Usage</h2>
+        </div>
+      </div>
+      
     </div>
   </div>
 

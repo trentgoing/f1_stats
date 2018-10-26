@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import * as d3 from 'd3';
 import { Node, Link, ForceDirectedGraph, Streamgraph } from './models/';
-
+import { LapTime } from '../race';
 @Injectable()
 export class D3Service {
   /** This service will provide methods to enable user interaction with elements while 
@@ -56,9 +56,8 @@ export class D3Service {
     return sg;
   }
 
-  getStreamgraph(options: { width, height} ) {
-    console.log('Service init StreamGraph');
-    const sg2 = new Streamgraph(options);
+  getStreamgraph(lapTimes:LapTime[], selected:string[], options: { width, height} ) {
+    const sg2 = new Streamgraph(lapTimes, selected, options);
     return sg2;
   }
   

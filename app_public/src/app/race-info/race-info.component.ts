@@ -30,6 +30,7 @@ export class RaceInfoComponent implements OnInit {
   newResults: Result[];
   seasonRaces: Race[];
   selectedDrivers: string[] = [];
+  selectedTab: string = 'position-changes';
 
   nodes: Node[] = [];
   links: Link[] = [];
@@ -84,6 +85,11 @@ export class RaceInfoComponent implements OnInit {
   driversSelected(event) {
     this.selectedDrivers = event;
     this.selectedDrivers = this.selectedDrivers.slice();
+  }
+
+  tabSelected(event) {
+    event.preventDefault();
+    this.selectedTab = event.target.id;
   }
 
   pageContent = {

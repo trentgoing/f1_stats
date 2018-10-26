@@ -1,7 +1,7 @@
 <div class="card driver" *ngFor="let result of results">
-  <div class="card-block drivers side-bar">
+  <div class="card-block drivers side-bar" [ngClass]="{'active': selected.indexOf(result.driver.surname) !== -1}"  (click)="toggleSelectedDrivers(result.driver.surname)">
     <h4>
-      <a (click)="toggleSelectedDrivers(result.driver.surname)">{{result.driver.forename}}  {{result.driver.surname}}</a>
+      <a>{{result.driver.forename}}  {{result.driver.surname}}</a>
       <!--a href="/drivers/1">{{result.driver.forename}} {{result.driver.surname}}</a-->
       <span class="badge badge-pill float-right" [class]="getStyleOrdinal(result.position)">{{result.position | ordinal}}</span>
     </h4>
@@ -15,4 +15,5 @@
       </div>
     </div>
   </div>
-</div>
+</div>  
+ 
