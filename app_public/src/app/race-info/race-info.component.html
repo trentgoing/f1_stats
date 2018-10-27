@@ -16,16 +16,16 @@
     <div class="card card-primary">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" href="#" id="position-changes" (click)="tabSelected($event)">Gap Chart</a>
+          <a class="nav-link" [ngClass]="{'active': selectedTab === 'position-changes'}" href="#" id="position-changes" (click)="tabSelected($event)">Gap Chart</a>
         </li>  
         <li class="nav-item">
-          <a class="nav-link" href="#" id="lap-times" (click)="tabSelected($event)">Lap Times</a>
+          <a class="nav-link" [ngClass]="{'active': selectedTab === 'lap-times'}" href="#" id="lap-times" (click)="tabSelected($event)">Lap Times</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="pit-stops" (click)="tabSelected($event)">Pit Stops</a>
+          <a class="nav-link" [ngClass]="{'active': selectedTab === 'pit-stops'}" href="#" id="pit-stops" (click)="tabSelected($event)">Pit Stops</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" id="tire-usage" (click)="tabSelected($event)">Tire Usage</a>
+          <a class="nav-link" [ngClass]="{'active': selectedTab === 'tire-usage'}" href="#" id="tire-usage" (click)="tabSelected($event)">Tire Usage</a>
         </li>
       </ul>
       <div *ngIf="selectedTab==='position-changes'">
@@ -36,7 +36,7 @@
       </div>
       <div *ngIf="selectedTab==='lap-times'">
         <div class="card-block" id="positions">
-          <h2 class="card-title">Position Changes</h2>
+          <h2 class="card-title">Lap Times</h2>
           <app-graph [nodes]="nodes" [links]="links"></app-graph>
         </div>
       </div>
